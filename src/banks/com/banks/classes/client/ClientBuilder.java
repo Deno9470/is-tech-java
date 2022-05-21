@@ -1,4 +1,4 @@
-package com.banks.Client;
+package banks.com.banks.classes.client;
 
 public class ClientBuilder {
     private Client client = new Client();
