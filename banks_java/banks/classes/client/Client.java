@@ -1,4 +1,4 @@
-package banks.com.banks.classes.client;
+package banks.classes.client;
 
 public class Client
 {

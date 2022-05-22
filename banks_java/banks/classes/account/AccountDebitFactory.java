@@ -1,7 +1,7 @@
-package banks.com.banks.classes.account;
+package banks.classes.account;
 
-import banks.com.banks.classes.client.Client;
-import banks.com.banks.classes.bank.Bank;
+import banks.classes.client.Client;
+import banks.classes.bank.Bank;
 
 public class AccountDebitFactory extends AccountFactory {
     @Override

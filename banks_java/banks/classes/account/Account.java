@@ -1,8 +1,8 @@
-package banks.com.banks.classes.account;
+package banks.classes.account;
 
 
-import banks.com.banks.classes.client.Client;
-import banks.com.banks.tools.BanksException;
+import banks.classes.client.Client;
+import banks.tools.BanksException;
 
 public abstract class Account {
     protected Client Owner;

@@ -1,4 +1,4 @@
-package banks.com.banks.tools;
+package banks.tools;
 public class BanksException extends Exception
     {
         public BanksException()

@@ -1,15 +1,14 @@
-package banks.com.tests;
-import banks.com.banks.classes.*;
-import banks.com.banks.classes.bank.*;
-import banks.com.banks.classes.client.*;
-import banks.com.banks.classes.account.*;
-import banks.com.banks.tools.*;
+package tests;
+import banks.classes.account.Account;
+import banks.classes.account.AccountCreditFactory;
+import banks.classes.account.AccountDebitFactory;
+import banks.classes.bank.Bank;
+import banks.classes.bank.BankBuilder;
+import banks.classes.bank.CentralBank;
+import banks.classes.client.Client;
+import banks.classes.client.ClientBuilder;
+import banks.tools.BanksException;
 import org.junit.jupiter.api.*;
-
-
-import java.util.concurrent.ExecutionException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BankTest {
     private CentralBank _central;

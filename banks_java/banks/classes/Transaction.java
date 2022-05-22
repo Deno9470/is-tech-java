@@ -1,6 +1,6 @@
-package banks.com.banks.classes;
+package banks.classes;
 
-import banks.com.banks.classes.account.Account;
+import banks.classes.account.Account;
 
 public class Transaction
 {

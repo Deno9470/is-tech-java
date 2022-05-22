@@ -1,8 +1,8 @@
-package banks.com.banks.classes.bank;
+package banks.classes.bank;
 
-import banks.com.banks.classes.Transaction;
-import banks.com.banks.classes.account.Account;
-import banks.com.banks.tools.BanksException;
+import banks.classes.Transaction;
+import banks.classes.account.Account;
+import banks.tools.BanksException;
 
 import java.util.ArrayList;
 import java.util.List;

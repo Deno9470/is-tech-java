@@ -1,11 +1,11 @@
-package banks.com.banks;
+package banks;
 
-import banks.com.banks.classes.bank.BankBuilder;
-import banks.com.banks.classes.bank.CentralBank;
-import banks.com.banks.classes.client.Client;
-import banks.com.banks.classes.client.ClientBuilder;
-import banks.com.banks.tools.BanksException;
-import banks.com.banks.classes.bank.Bank;
+import banks.classes.bank.BankBuilder;
+import banks.classes.bank.CentralBank;
+import banks.classes.client.Client;
+import banks.classes.client.ClientBuilder;
+import banks.tools.BanksException;
+import banks.classes.bank.Bank;
 
 import java.util.Scanner;
 

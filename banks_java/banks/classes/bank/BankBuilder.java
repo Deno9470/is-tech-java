@@ -1,4 +1,4 @@
-package banks.com.banks.classes.bank;
+package banks.classes.bank;
 
 public class BankBuilder
 {
