@@ -3,11 +3,9 @@ package java.dal.impl;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.classes.Cat;
 import java.classes.Owner;
 import java.dal.interfaces.IOwnerDAL;
-import java.util.HibernateSessionFactoryUtil;
-import java.util.List;
+import java.hibernate.HibernateSessionFactoryUtil;
 
 public class OwnerDAL implements IOwnerDAL {
     public Owner findById(int id) {
