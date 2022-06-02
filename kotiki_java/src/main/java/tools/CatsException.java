@@ -1,4 +1,4 @@
-package java.tools;
+package tools;
 
 public class CatsException extends Exception {
     public CatsException() {
