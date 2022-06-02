@@ -1,8 +1,16 @@
-package java.enums;
+package enums;
 
 public enum CatBreed {
-    BREED1,
-    BREED2,
-    BREED3,
-    BREED4
+    TESTBREED,
+    MAINECOON,
+    PERSIAN,
+    BRITISH,
+    MUNCHKIN,
+    RUSSIAN_BLUE,
+    SCOTTISH,
+    THAI,
+    CHARTREUX,
+    SPHYNX,
+    SIBERIAN,
+    PIXIE
 }

@@ -1,9 +1,13 @@
-package java.enums;
+package enums;
 
 public enum CatColor {
-    COLOR1,
-    COLOR2,
-    COLOR3,
-    COLOR4,
-    COLOR5
+    TESTCOLOR,
+    WHITE,
+    BLACK,
+    GREY,
+    GOLDEN,
+    TORTIE,
+    CHOCOLATE,
+    FAWN,
+    COLORPOINT
 }
