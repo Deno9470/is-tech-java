@@ -1,5 +1,5 @@
-package java.hibernate;
-import java.classes.*;
+package hibernate;
+import classes.*;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -16,12 +16,12 @@ public class HibernateSessionFactoryUtil {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(Owner.class);
                 configuration.addAnnotatedClass(Cat.class);
-                //configuration.addAnnotatedClass(Friends.class);
+                configuration.addAnnotatedClass(Friend.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties());
                 _instance = configuration.buildSessionFactory(builder.build());
             } catch (Exception e) {
-                System.out.println("Exception: " + e.toString());
+                System.out.println("Exception: " + e.getMessage());
             }
         }
 
