@@ -1,5 +1,5 @@
-package java.dal.interfaces;
-import java.classes.Owner;
+package dal.interfaces;
+import classes.Owner;
 import java.util.List;
 
 public interface IOwnerDAL {
@@ -10,5 +10,7 @@ public interface IOwnerDAL {
     void update(Owner owner);
 
     void delete(Owner owner);
+
+    List<Owner> getAll();
 
 }

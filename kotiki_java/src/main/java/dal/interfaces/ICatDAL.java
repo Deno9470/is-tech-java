@@ -1,7 +1,7 @@
-package java.dal.interfaces;
+package dal.interfaces;
 
-import java.classes.Cat;
-import java.hibernate.HibernateSessionFactoryUtil;
+import classes.Cat;
+import hibernate.HibernateSessionFactoryUtil;
 import java.util.List;
 
 public interface ICatDAL {

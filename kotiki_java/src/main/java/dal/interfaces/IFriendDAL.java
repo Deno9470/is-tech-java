@@ -1,6 +1,6 @@
-package java.dal.interfaces;
+package dal.interfaces;
 
-import java.classes.Friend;
+import classes.Friend;
 import java.util.List;
 
 public interface IFriendDAL {
