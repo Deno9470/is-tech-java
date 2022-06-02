@@ -1,9 +1,10 @@
-package java.service.catService;
-import java.classes.Friend;
-import java.dal.impl.CatDAL;
-import java.classes.Cat;
-import java.dal.impl.FriendDAL;
-import java.tools.CatsException;
+package service.catService;
+import classes.Friend;
+import classes.Owner;
+import dal.impl.CatDAL;
+import classes.Cat;
+import dal.impl.FriendDAL;
+import tools.CatsException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,15 +15,18 @@ public class CatService {
     public void saveCat(Cat cat) throws CatsException {
         if (cat == null)
             throw new CatsException("Invalid cat.");
-
         catDAL.save(cat);
+    }
+    public void setNewOwner(int id, Cat cat) {
+        cat.setOwner_id(id);
+        catDAL.update(cat);
     }
 
     public Cat findCatById(int id) {
         return CatDAL.findById(id);
     }
 
-    public List<Cat> findAllCats() {
+    public List<Cat> getAllCats() {
         return CatDAL.getAll();
     }
 
@@ -33,8 +37,6 @@ public class CatService {
 
         CatDAL.delete(cat);
     }
-
-
 
     public void makeFriends(int idOfFirstCat, int idOfSecondCat) throws CatsException {
         if (idOfFirstCat == idOfSecondCat)
@@ -61,5 +63,8 @@ public class CatService {
         }
         return FriendsOfCat;
 
+    }
+    public void deleteCat(Cat cat) {
+        CatDAL.delete(cat);
     }
 }
