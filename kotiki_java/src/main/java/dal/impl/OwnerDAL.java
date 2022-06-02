@@ -1,11 +1,12 @@
-package java.dal.impl;
+package dal.impl;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.classes.Owner;
-import java.dal.interfaces.IOwnerDAL;
-import java.hibernate.HibernateSessionFactoryUtil;
+import classes.Owner;
+import dal.interfaces.IOwnerDAL;
+import hibernate.HibernateSessionFactoryUtil;
+import java.util.List;
 
 public class OwnerDAL implements IOwnerDAL {
     public Owner findById(int id) {
@@ -15,7 +16,7 @@ public class OwnerDAL implements IOwnerDAL {
     public void save(Owner owner) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(owner);
+        session.persist(owner);
         transaction.commit();
         session.close();
     }
@@ -23,7 +24,7 @@ public class OwnerDAL implements IOwnerDAL {
     public void update(Owner owner) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(owner);
+        session.merge(owner);
         transaction.commit();
         session.close();
     }
@@ -31,8 +32,12 @@ public class OwnerDAL implements IOwnerDAL {
     public void delete(Owner owner) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(owner);
+        session.remove(owner);
         transaction.commit();
         session.close();
     }
+    public List<Owner> getAll() {
+        return (List<Owner>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Owner").list();
+    }
+
 }

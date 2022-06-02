@@ -1,13 +1,14 @@
-package java.dal.impl;
+package dal.impl;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.classes.Friend;
-import java.dal.interfaces.IFriendDAL;
-import java.hibernate.HibernateSessionFactoryUtil;
+import classes.Friend;
+import dal.interfaces.IFriendDAL;
+import hibernate.HibernateSessionFactoryUtil;
 import java.util.List;
-import java.util.Objects;
 
 public class FriendDAL implements IFriendDAL {
     public Friend findById(int id) {
@@ -17,7 +18,7 @@ public class FriendDAL implements IFriendDAL {
     public void save(Friend friend) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(friend);
+        session.persist(friend);
         transaction.commit();
         session.close();
     }
@@ -25,7 +26,7 @@ public class FriendDAL implements IFriendDAL {
     public void update(Friend friend) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(friend);
+        session.merge(friend);
         transaction.commit();
         session.close();
     }
@@ -33,13 +34,20 @@ public class FriendDAL implements IFriendDAL {
     public void delete(Friend friend) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(friend);
+        session.remove(friend);
         transaction.commit();
         session.close();
     }
 
     public List<Friend> getAll() {
-        return (List<Friend>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Friends").list();
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        return loadAllData(session);
     }
 
+    private static <T> List<T> loadAllData(Session session) {
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> criteria = builder.createQuery((Class<T>) Friend.class);
+        criteria.from((Class<T>) Friend.class);
+        return session.createQuery(criteria).getResultList();
+    }
 }

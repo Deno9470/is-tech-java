@@ -1,11 +1,11 @@
-package java.dal.impl;
+package dal.impl;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.classes.Cat;
-import java.dal.interfaces.ICatDAL;
-import java.hibernate.HibernateSessionFactoryUtil;
+import classes.Cat;
+import dal.interfaces.ICatDAL;
+import hibernate.HibernateSessionFactoryUtil;
 import java.util.List;
 
 public class CatDAL implements ICatDAL {
@@ -18,7 +18,7 @@ public class CatDAL implements ICatDAL {
     public void save(Cat cat) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(cat);
+        session.persist(cat);
         transaction.commit();
         session.close();
     }
@@ -26,7 +26,7 @@ public class CatDAL implements ICatDAL {
     public void update(Cat cat) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(cat);
+        session.merge(cat);
         transaction.commit();
         session.close();
     }
@@ -34,7 +34,7 @@ public class CatDAL implements ICatDAL {
     public static void delete(Cat cat) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(cat);
+        session.remove(cat);
         transaction.commit();
         session.close();
     }
