@@ -1,18 +1,19 @@
-package java.classes;
+package classes;
 import jakarta.persistence.*;
 
 import java.util.concurrent.RecursiveTask;
 
 @Entity
-@Table(name = "Friends")
+@Table(name = "friends")
 public class Friend {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "sequence", sequenceName = "friends_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequence")
     private int id;
-    @Column(name = "first")
+    @Column(name = "first_cat")
     private int first;
-    @Column(name = "second")
+    @Column(name = "second_cat")
     private int second;
 
     public Friend() {

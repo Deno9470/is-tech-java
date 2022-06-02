@@ -1,12 +1,13 @@
-package java.classes;
+package classes;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Owners")
+@Table(name= "owners")
 public class Owner {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "sequence", sequenceName = "owners_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequence")
     private int id;
     @Column(name = "name")
     private String name;
@@ -14,6 +15,10 @@ public class Owner {
     private String bdate;
 
     public Owner(){
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Owner(String  name, String bdate) {
