@@ -1,15 +1,15 @@
-package com.entity;
+package com.itmo.entity;
 
-import com.enums.CatBreed;
-import com.enums.CatColor;
-import jakarta.persistence.*;
+import com.itmo.enums.CatBreed;
+import com.itmo.enums.CatColor;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "Cat")
 @Table(name = "cats")
 public class Cat {
     @Id
-    @SequenceGenerator(name = "sequencec", sequenceName = "cats_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequencec")
+    @SequenceGenerator(name = "sequence", sequenceName = "cats_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "sequence")
     private int id;
     @Column(name = "name")
     private String name;
