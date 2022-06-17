@@ -1,16 +1,15 @@
-package com.repository;
+package com.itmo.repository;
 
-import com.entity.Owner;
-import com.enums.CatColor;
+import com.itmo.enums.CatColor;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.entity.Cat;
+import com.itmo.entity.Cat;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Repository
+@Component
 public interface CatRepository extends JpaRepository<Cat, Integer> {
 
 
@@ -18,12 +17,6 @@ public interface CatRepository extends JpaRepository<Cat, Integer> {
 
     List<Cat> findAllByName(String name);
 
-
-    @Query("select e from Cat e where e.passportOwner = :code")
-    List<Cat> findOwnerCats(@Param("code") int code);
-
-    List<Cat> findAllByOwner_id(int id);
-
-    @Query("FROM CatEntity t")
+    @Query("FROM Cat t")
     List<Cat> getAll();
 }

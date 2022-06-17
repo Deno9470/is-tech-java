@@ -1,4 +1,4 @@
-package com.enums;
+package com.itmo.enums;
 
 public enum CatBreed {
     TESTBREED,

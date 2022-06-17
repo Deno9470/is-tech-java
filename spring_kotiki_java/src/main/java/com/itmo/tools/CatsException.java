@@ -1,4 +1,4 @@
-package com.tools;
+package com.itmo.tools;
 
 public class CatsException extends Exception {
     public CatsException() {

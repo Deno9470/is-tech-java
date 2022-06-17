@@ -1,13 +1,13 @@
-package com.entity;
+package com.itmo.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name= "owners")
 public class Owner {
     @Id
     @SequenceGenerator(name = "sequence", sequenceName = "owners_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "sequence")
     private int id;
     @Column(name = "name")
     private String name;

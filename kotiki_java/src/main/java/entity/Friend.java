@@ -1,5 +1,5 @@
-package com.entity;
-import jakarta.persistence.*;
+package entity;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "friends")
@@ -33,10 +33,4 @@ public class Friend {
     public int getSecond() {
         return second;
     }
-
-    public void setSecond(int second) { this.second = second; }
-
-    public void setFirst(int first) { this.first = first; }
-
-    public void setId(int id) { this.id = id; }
 }

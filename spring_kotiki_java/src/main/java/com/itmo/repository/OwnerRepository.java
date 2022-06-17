@@ -1,6 +1,6 @@
-package com.repository;
+package com.itmo.repository;
 
-import com.entity.Owner;
+import com.itmo.entity.Owner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
