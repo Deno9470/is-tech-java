@@ -9,7 +9,11 @@
 <body>
 <a href="/">Back</a>
 <br>
-
+<#if inputError??>
+    <div style="color:red;font-style:italic;">
+        ${inputError}
+    </div>
+</#if>
 Result :
 <table border="2px">
     <tr>

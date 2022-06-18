@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
-<body>
+<body style="display: inline-block">
 <a href="/">Back</a>
 <br>
 Set parameters for search :
