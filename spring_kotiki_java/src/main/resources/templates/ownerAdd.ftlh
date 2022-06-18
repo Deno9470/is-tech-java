@@ -19,6 +19,8 @@
 <!--    <p>Id: <@spring.formInput "owner.id"/></p> -->
     <p>Name:  <@spring.formInput "owner.name"/></p>
     <p>Date of birth:  <@spring.formInput "owner.date"/></p>
+    <p>Password: <@spring.formInput "owner.password"/> </p>
+    <p class="radioEnums">Role:  <@spring.formSingleSelect "owner.role", roles, " "/></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 </body>
