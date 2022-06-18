@@ -4,6 +4,7 @@ import com.itmo.entity.Cat;
 import com.itmo.entity.Owner;
 import com.itmo.enums.CatBreed;
 import com.itmo.enums.CatColor;
+import com.itmo.enums.Role;
 import com.itmo.service.CatService;
 import com.itmo.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,6 +127,15 @@ public class MainService {
                 .collect(Collectors.toMap(i -> stringColors.get(i), i -> finalLowerStringBreeds.get(i)));
         return days;
     }
+    public Map<String,String>getAllRoles() {
+        List<String> stringRoles =  Arrays.stream(Role.values()).map(Enum::toString).collect(Collectors.toList());
+        List<String> lowerStringRoles = stringRoles.stream().map(String::toLowerCase).collect(Collectors.toList());
+        List<String> finalLowerStringRoles = lowerStringRoles.stream().map(str -> str.substring(0,1).toUpperCase()+str.substring(1)).collect(Collectors.toList());
+        Map<String, String> days = IntStream.range(0, stringRoles.size()).boxed()
+                .collect(Collectors.toMap(i -> stringRoles.get(i), i -> finalLowerStringRoles.get(i)));
+        return days;
+    }
+
 
     public boolean isValidCat(Cat cat) {
         return getOwnedCats(getOwnerById(cat.getOwner_id())).stream().noneMatch(i -> i.getName().equals(cat.getName()));
