@@ -4,7 +4,10 @@ import com.itmo.MainService;
 import com.itmo.entity.Cat;
 import com.itmo.entity.Friend;
 import com.itmo.entity.Owner;
+import com.itmo.security.WebSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +21,17 @@ import java.util.stream.Collectors;
 @Controller
 //@RequestMapping("/cats")
 public class CatController {
+    private Authentication authOfUser;
     @Autowired
     private MainService service;
-    private String message = "This is a mes";
     @RequestMapping("/")
     public String welcome(Model model) {
-        model.addAttribute("message", this.message);
         return "index";
     }
+
+
+
+    @PreAuthorize("hasAuthority('write')")
     @RequestMapping("/owners/")
     public String allOwnerList(Model model) {
         List<Owner> ownerList = service.getAllOwners();
@@ -34,12 +40,14 @@ public class CatController {
         return "ownerlist";
     }
 
-
+    @PreAuthorize("hasAuthority('write')")
     @RequestMapping(value = "/owners/add", method=RequestMethod.GET)
     public String addOwner( Model model) {
+        model.addAttribute("roles", service.getAllRoles());
         model.addAttribute("owner" , new Owner());
         return "ownerAdd";
     }
+    @PreAuthorize("hasAuthority('write')")
     @RequestMapping(value = "/owners/add", method=RequestMethod.POST)
     public String saveOwner(@ModelAttribute Owner owner, Model model) {
         model.addAttribute("owner" , owner);
@@ -48,6 +56,7 @@ public class CatController {
             model.addAttribute("inputError", error);
             return "ownerAdd";
         }
+        owner.setPassword(WebSecurityConfig.passwordEncoder().encode(owner.getPassword()));
         service.addOwner(owner);
         return "redirect:/owners/";
     }
@@ -56,6 +65,7 @@ public class CatController {
         service.deleteOwner(id);
         return "redirect:/owners/";
     }
+
     @RequestMapping(value = "/owners/{id}")
     public String showOwnerInfo(@PathVariable int id, Model model) {
         Owner owner = service.getOwnerById(id);
@@ -98,6 +108,8 @@ public class CatController {
         service.addCat(cat);
         return String.format("redirect:/owners/%d", cat.getOwner_id());
     }
+
+    @PreAuthorize("hasAuthority('read')")
     @RequestMapping(value = "/cats/{id}")
     public String catInfo(@PathVariable int id, Model model) {
         Cat cat = service.getCatById(id);
@@ -132,9 +144,10 @@ public class CatController {
         service.deleteFriendOfCat(service.getCatById(id), service.getCatById(idf));
         return String.format("redirect:/cats/%d", id);
     }
-
+    @PreAuthorize("hasAuthority('read')")
     @RequestMapping(value = "/search")
-    public String colorSearch(Model model) {
+    public String colorSearch(Model model, Authentication authentication) {
+        authOfUser = authentication;
         Map<String, String> breeds = service.getAllBreeds();
         Map<String,String> colors = service.getAllColors();
         breeds.put("TESTBREED", "*");
@@ -161,21 +174,13 @@ public class CatController {
             result = service.getAllCats().stream()
                     .filter(ct -> ct.getName().equals(cat.getName()))
                     .collect(Collectors.toList());
+            if(authOfUser.getAuthorities().size() != 2)
+                result.retainAll(service.getAllCats().stream()
+                        .filter(ct -> service.getOwnerById(ct.getOwner_id()).getName()
+                                .equals(authOfUser.getName())).collect(Collectors.toList()));
         model.addAttribute("searchList", result);
         return "searchRes";
     }
-
-    // getCurrentCatsInfo+
-    // getCurrentOwnerInfo+
-    // cats add page+
-    // owner add page+
-    // friends add page+
-    // ???
-    // ViewOnlyOwnerInfo
-    //delete cat+
-    //delete owner+
-    //delete friend+
-
 
 
 }
