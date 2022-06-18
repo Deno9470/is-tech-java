@@ -9,5 +9,9 @@
 <h2>Cats Management System</h2>
 <I>no login system implemented</I><br/>
 <a href="/owners/">All Owners</a>   <br>  <a href="/search/">Search</a>
+
+<br>
+<br>
+<a href="/logout">Log out</a>
 </body>
 </html>
