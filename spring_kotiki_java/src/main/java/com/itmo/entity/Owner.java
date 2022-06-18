@@ -1,5 +1,7 @@
 package com.itmo.entity;
 
+import com.itmo.enums.Role;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,12 @@ public class Owner {
     private String name;
     @Column(name = "bdate")
     private String bdate;
+    @Column(name = "password")
+    private String password;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+
 
     public Owner(){
     }
@@ -43,6 +51,30 @@ public class Owner {
     }
 
     public void setDate(String bdate) {
+        this.bdate = bdate;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getBdate() {
+        return bdate;
+    }
+
+    public void setBdate(String bdate) {
         this.bdate = bdate;
     }
 }
