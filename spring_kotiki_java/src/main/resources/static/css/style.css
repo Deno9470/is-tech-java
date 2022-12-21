@@ -1,0 +1,25 @@
+table {
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 2px;
+}
+a {
+    text-decoration: none;
+}
+a:link, a:visited {
+    color: blue;
+}
+.newOwner {
+    border: 3px;
+    border-radius: 2px;
+}
+img {
+    background-size: cover;
+    background: url('https://thiscatdoesnotexist.com/?i=${i}') no-repeat fixed center center;
+}
+
+div .but {
+    text-align: center;
+}
